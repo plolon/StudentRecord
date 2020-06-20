@@ -1,0 +1,19 @@
+{
+  "name": "studentrecord",
+  "version": "1.0.0",
+  "description": "online record for students with grades and admin panel",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plolon/StudentRecord.git"
+  },
+  "author": "Dawid Bańczak",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/plolon/StudentRecord/issues"
+  },
+  "homepage": "https://github.com/plolon/StudentRecord#readme"
+}
