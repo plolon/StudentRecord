@@ -1,0 +1,27 @@
+<div class="backdrop"></div>
+<header class="main-header">
+    <button id="side-menu-toggle">Menu</button>
+    <nav class="main-header__nav">
+        <ul class="main-header__item-list">
+            <% if(user.permissionCode === 0) { %>
+            <li class="main-header__item">
+                <a class="<%= path === '/' ? 'active' : '' %>" href="/record/my-grades">My Grades</a>
+            </li>
+            <% } if (user.permissionCode === 1 || user.permissionCode === 2) { %>
+            <li class="main-header__item">
+                <a class="<%= path === '/record/students' ? 'active' : '' %>" href="/record/students">Students</a>
+            </li>
+            <% } if (user.permissionCode === 2) { %>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/users' ? 'active' : '' %>" href="/admin/users">Admin Users</a>
+            </li>
+            <li class="main-header__item">
+                <a class="<%= path === '/admin/add-user' ? 'active' : '' %>" href="/admin/add-user">Add User</a>
+            </li>
+            <% } %>
+            <li class="main-header__item">
+                <a href="/exit">Log out</a>
+            </li>
+        </ul>
+    </nav>
+</header>
