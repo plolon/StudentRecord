@@ -35,6 +35,14 @@ app.use(express.static(path.join(__dirname, 'public')));
  app.use('/admin', adminRoutes);
  app.use('/record', recordRoutes);
 
+// RELATIONS
+User.belongsTo(Permission);
+Permission.hasMany(User);
+Grade.belongsTo(User, {constraints: true, onDelete: 'CASCADE'});
+User.hasMany(Grade);
+Grade.belongsToMany(Subject, { through: 'grade_subject' });
+Subject.belongsToMany(Grade, { through: 'grade_subject' });
+
 sequelize.sync()
 .then(result => {
     app.listen(4000);
