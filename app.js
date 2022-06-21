@@ -18,12 +18,22 @@ const User = require('./models/user');
 const Subject = require('./models/subject');
 
 const app = express();
+const oneDay = 1000 * 60 * 60 * 24;
+app.set('trust proxy', 1)
+app.use(session({
+    secret: "secretTokenKekw",
+    saveUninitialized: true,
+    cookie: { maxAge: oneDay },
+    resave: false 
+}));
+
 app.set('view engine', 'ejs');
 app.set('views', 'views');
 
 createSubjects();
 createAdmin();
 
+const errorController = require('./controllers/error');
 const adminRoutes = require('./routes/admin');
 const loginRoutes = require('./routes/login');
 const recordRoutes = require('./routes/record');
@@ -31,9 +41,16 @@ const recordRoutes = require('./routes/record');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use((req, res, next) => {
+    if(req.session.user === undefined && req.url !== '/login' && req.url !== '/login/1' && req.url !== '/login/2' && req.url !== '/register')
+        res.redirect('/login');
+    else    
+        next();
+});
  app.use(loginRoutes);
  app.use('/admin', adminRoutes);
  app.use('/record', recordRoutes);
+ app.use(errorController.get404);
 
 // RELATIONS
 User.belongsTo(Permission);
