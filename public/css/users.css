@@ -1,0 +1,86 @@
+h2 {
+  font: 33px sans-serif;
+  margin-top: 30px;
+  text-align: center;
+  text-transform: uppercase;
+}
+h2.background {
+  position: relative;
+  z-index: 1;
+}
+h2.background:before {
+  border-top: 2px solid #dfdfdf;
+  content: "";
+  margin: 0 auto;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 85%;
+  z-index: -1;
+}
+h2.background span {
+  background: #fff;
+  padding: 0 15px;
+}
+.sidenav {
+  height: 100%;
+  width: 15%;
+  z-index: 1;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  padding-top: 60px;
+  transition: 0.5s;
+  float: left;
+}
+.content{
+  overflow: hidden;
+  float: left;
+  width: 85%;
+}
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+main {
+  transition: margin-left .5s;
+  padding: 0px;
+  margin: 0px;
+  height: 100%;
+}
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+.wrapper{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+.table{
+  width: 100%;
+  border-collapse: collapse;
+  border-spacing: 0;
+  margin-bottom: 1%;
+}
+
+.table td,th {
+  font-size: 14px;
+  border-top: 1px solid #ddd;
+  padding: 5px 12px;
+  text-align: left;
+  vertical-align: top;
+}
+
+.table tbody tr:nth-child(even) td {
+  background-color: #f3f3f3;
+}
