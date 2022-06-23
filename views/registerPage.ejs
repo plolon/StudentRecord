@@ -1,0 +1,17 @@
+<%- include('includes/head.ejs') %>
+<link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+    <form class="login-form" action="/register" method="POST">
+        <div class="form-control">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <button class="btn" type="submit">Zarejestruj jako uczeń</button>
+    </form>
+<%- include('includes/end.ejs') %>
