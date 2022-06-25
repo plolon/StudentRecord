@@ -1,0 +1,34 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+   <%- include('../includes/navigation.ejs', {user: user}) %>
+
+    <main>
+        <form class="grade-form" action="/record/<% if (editing) { %>edit-grade<% } else { %>add-grade<% } %>" method="POST">
+            <div class="form-control">
+                <label for="teacherName">Nazwisko</label>
+                <input type="text" name="teacherName" id="teacherName" value="<% if (editing) { %><%= grade.teacherName %><% } %>" required>
+            </div>
+            <div class="form-control">
+                <label for="name">Nazwa</label>
+                <input type="text" name="name" id="name" value="<% if (editing) { %><%= grade.name %><% } %>" required>
+            </div>
+            <div class="form-control">
+                <label for="value">Ocena</label>
+                <input type="number" name="value" id="value" step="1" min="1" max="6" value="<% if (editing) { %><%= grade.value %><% } %>" required>
+            </div>
+            <div class="form-control-readonly">
+                <label for="subjectName">Przedmiot</label>
+                <input type="text" name="subjectName" id="subjectName" value="<% if (editing) { %><%= grade.grade_subject.name %><% } else { %><%= subject.name %><% } %>" readonly required>
+            </div>
+            <input type="hidden" value="<%= user.id %>" name="userId">
+            <% if (editing) { %>
+                <input type="hidden" value="<%= grade.id %>" name="gradeId">
+            <% } %>
+
+            <button class="btn" type="submit"><% if (editing) { %>Edytuj Ocene<% } else { %>Dodaj Ocene<% } %></button>
+        </form>
+    </main>
+<%- include('../includes/end.ejs') %>
