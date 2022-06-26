@@ -1,0 +1,60 @@
+<%- include('../includes/head.ejs') %>
+    <link rel="stylesheet" href="/css/users.css">
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs', {user: user}) %>
+
+    <main>
+        <div class="wrapper">
+            <div class="sidenav">
+                <% for (subject of subjects) { %>
+                    <a href="/record/<% if (teacher===true) { %>grades/<%= gradesUser.id %><% } else { %>my-grades<% } %>/<%= subject.name %>"><%= subject.name %></a>
+                <% } %>
+            </div>
+            <div class="content">
+                <div class="user__name">
+                    <h2 class="background"><span><%= gradesUser.username %></span></h2>
+                </div>
+                <!-- SUBJECT -->
+                <div>
+                    <table class="table">
+                        <tbody>
+                            <tr><td colspan="5" style="text-align: center;"><% if (subjectTitle === 'BZDURA') { %>Wszystkie przedmioty<% } else { %><%= subjectTitle %><% } %></td></tr>
+                            <tr>
+                                <td><strong>Nazwisko Nauczyciela</strong></td>
+                                <td><strong>Nazwa</strong></td>
+                                <td><strong>Ocena</strong></td>
+                                <td><strong>Data</strong></td>
+                                <td></td>
+                            </tr>
+                            <% for (grade of grades) { %>
+                                <tr>
+                                    <td><%= grade.teacherName %></td>
+                                    <td><%= grade.name %></td>
+                                    <td><%= grade.value %></td>
+                                    <td><%= grade.createdAt %></td>
+                                    <td>
+                                        <% if (teacher === true) { %>
+                                        <a href="/record/edit-grade/<%= grade.id %>" class="btn">Edytuj</a>
+                                        <form action="/record/delete-grade" method="POST">
+                                            <input type="hidden" value="<%= grade.id %>" name="gradeId">
+                                            <input type="hidden" value="<%= gradesUser.id %>" name="userId">
+                                            <input type="hidden" value="<%= subjectTitle %>" name="subjectTitle">
+                                            <button class="btn" type="submit">Delete</button>
+                                        </form>
+                                        <% } %>
+                                    </td>
+                                </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                    <% if (subjectTitle !== 'BZDURA' && teacher === true) { %>
+                    <a style="margin: 1em;" href="/record/add-grade/<%= gradesUser.id %>/<%= subjectTitle %>" class="btn">Dodaj Ocene</a>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<%- include('../includes/end.ejs') %>
