@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title><%= pageTitle %></title>
+    <link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="/css/form.css">
+</head>
+
+<body>
+    <form class="login-form" action="/login" method="POST">
+        <div class="form-control">
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" required>
+        </div>
+        <div class="form-control">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" required>
+        </div>
+        <button class="btn" type="submit">Zaloguj</button>
+        <a href="/register" class="btn">Zarejestruj</a>
+    </form>
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
